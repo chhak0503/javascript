@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2.연산자</title>
+    <!--
+        날짜 : 2024/08/05
+        이름 : 김철학
+        내용 : 자바스크립트 연산자 실습하기
+    -->
+</head>
+<body>
+    <h3>2.연산자</h3>
+
+    <h4>산술연산자</h4>
+    <script>
+        let num1 = 1;
+        let num2 = 2;
+        let num3 = 3;
+        let num4 = 4;
+
+        const rs1 = num1 + num2;
+        const rs2 = num1 - num2;
+        const rs3 = num2 * num3;
+        const rs4 = num4 / num2;
+        const rs5 = num4 % num3;
+
+        document.write('rs1 : ' + rs1 + '<br>');
+        document.write('rs2 : ' + rs2 + '<br>');
+        document.write('rs3 : ' + rs3 + '<br>');
+        document.write('rs4 : ' + rs4 + '<br>');
+        document.write('rs5 : ' + rs5 + '<br>');
+    </script>
+
+    <h4>복합대입연산자</h4>
+    <script>
+        let var1 = 1;
+        let var2 = 2;
+        let var3 = 3;
+        let var4 = 4;
+
+        var1 += 1;
+        var2 -= 2;
+        var3 *= 3;
+        var4 /= 4;
+
+        document.write('var1 : ' + var1 + '<br>');
+        document.write('var2 : ' + var2 + '<br>');
+        document.write('var3 : ' + var3 + '<br>');
+        document.write('var4 : ' + var4 + '<br>');
+
+    </script>
+
+    <h4>비교연산자</h4>
+    <script>
+        let n1 = 1, n2 = 2, n3 = 3, n4 = 4;
+
+        let r1 = n1 > n2;
+        let r2 = n1 < n2;
+        let r3 = n2 >= n3;
+        let r4 = n2 <= n3;
+        let r5 = n3 == n4;
+        let r6 = n3 != n4;
+
+        document.write('r1 : ' + r1 + '<br>');
+        document.write('r2 : ' + r2 + '<br>');
+        document.write('r3 : ' + r3 + '<br>');
+        document.write('r4 : ' + r4 + '<br>');
+        document.write('r5 : ' + r5 + '<br>');
+        document.write('r6 : ' + r6 + '<br>');
+    </script>
+
+    <h4>논리연산자</h4>
+    <script>
+        const res1 = n1 > 1 && n2 > 2;
+        const res2 = n1 < 2 && n2 < 3;
+        const res3 = n1 >= 1 || n2 >= 1;
+        const res4 = n2 > 3 || n3 > 2;
+        const res5 = !(n3 > n4);
+
+        document.write('<ul>');
+        document.write('<li>res1 : ' + res1 + '</li>');
+        document.write('<li>res2 : ' + res2 + '</li>');
+        document.write('<li>res3 : ' + res3 + '</li>');
+        document.write('<li>res4 : ' + res4 + '</li>');
+        document.write('<li>res5 : ' + res5 + '</li>');
+        document.write('</ul>');
+    </script>
+
+    <h4>일치연산자</h4>
+    <script>
+        let num = 10;
+        let str = '10';
+
+        const result1 = num == str;
+        const result2 = num === str; // 타입 일치까지 비교
+        const result3 = 0 == false;
+        const result4 = 0 === false;
+
+
+        document.write('result1 : ' + result1 + '<br>');
+        document.write('result2 : ' + result2 + '<br>');
+        document.write('result3 : ' + result3 + '<br>');
+        document.write('result4 : ' + result4 + '<br>');
+
+
+    </script>
+
+
+
+</body>
+</html>

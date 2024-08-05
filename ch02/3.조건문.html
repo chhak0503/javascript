@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3.조건문</title>
+    <!--
+        날짜 : 2024/08/05
+        이름 : 김철학
+        내용 : 자바스크립트 조건문 실습하기
+    -->
+</head>
+<body>
+    <h3>3.조건문</h3>
+
+    <h4>if</h4>
+    <script>
+        const num1 = 1;
+        const num2 = 2;
+
+        if(num1 < num2){
+            document.write('num1은 num2보다 작다.<br>');
+        }
+
+        if(num1 > 0){
+            if(num2 > 1){
+                document.write('num1은 0보다 크고 num2는 1보다 크다.<br>');
+            }
+        }
+
+        if(num1 > 0 && num2 > 1){
+            document.write('num1은 0보다 크고 그리고 num2는 1보다 크다.<br>');
+        }
+
+    </script>
+    
+    <h4>if ~ else</h4>
+    <script>
+        let var1 = 1;
+        let var2 = 2;
+
+        if(var1 > var2){
+            document.write('var1은 var2보다 크다.<br>');
+        }else {
+            document.write('var1은 var2보다 작다.<br>');
+        }
+    </script>
+    
+    <h4>if ~ else if ~ else</h4>
+    <script>
+        let n1 = 1, n2 = 2, n3 = 3, n4 = 4;
+
+        if(n1 > n2){
+            document.write('n1은 n2보다 크다.<br>');
+        }else if(n2 > n3){
+            document.write('n2은 n3보다 크다.<br>');
+        }else if(n3 > n4){
+            document.write('n3은 n4보다 크다.<br>');
+        }else {
+            document.write('n4가 가장 크다.<br>');
+        }
+    </script>
+    
+    <h4>switch</h4>
+    <script>
+        let score = prompt('점수 입력');
+        document.write('입력점수 : ' + score + ', type : ' + typeof score + '<br>');
+
+        let result = parseInt(score / 10);
+        document.write('result : ' + result + '<br>');
+
+        switch(result){
+            case 9:
+                document.write('A입니다.<br>');
+                break;
+            case 8:
+                document.write('B입니다.<br>');
+                break;
+            case 7:
+                document.write('C입니다.<br>');
+                break;
+            case 6:
+                document.write('D입니다.<br>');
+                break;
+            default:
+                document.write('F입니다.<br>');
+                break;
+        }
+
+
+
+    </script>
+
+
+</body>
+</html>
