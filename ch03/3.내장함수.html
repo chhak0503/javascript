@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3.내장함수</title>
+    <!--
+        날짜 : 2024/08/06
+        이름 : 김철학
+        내용 : 자바스크립트 내장함수 실습하기
+    -->
+</head>
+<body>
+    <h3>3.내장함수</h3>
+    <script>
+        // 숫자 변환
+        let str1 = '10';
+        let str2 = '3.14';
+        let str3 = '2024년';
+
+        let r1 = parseInt(str1);
+        let r2 = parseInt(str2);
+        let r3 = parseInt(str3);
+        let r4 = parseFloat(str2);
+        let r5 = Number(str1);
+        let r6 = Number(str2);
+        let r7 = Number(str3);
+
+        document.write('r1 : ' + r1 + '<br>');
+        document.write('r2 : ' + r2 + '<br>');
+        document.write('r3 : ' + r3 + '<br>');
+        document.write('r4 : ' + r4 + '<br>');
+        document.write('r5 : ' + r5 + '<br>');
+        document.write('r6 : ' + r6 + '<br>');
+        document.write('r7 : ' + r7 + '<br>');
+
+        // 문자열 변환
+        let num1 = 10;
+        let num2 = 20;
+
+        let rs1 = String(num1);
+        let rs2 = String(num2);
+
+        document.write('rs1 + rs2 : ' + rs1 + rs2 + '<br>');
+        
+        // 타이머 함수
+        setTimeout(function(){
+            //document.write('call!!!');
+            console.log('3초 후에 실행...');
+
+        }, 1000 * 3); // 3초 후에 콜백함수 실행
+
+        setInterval(function(){
+
+            console.log('2초 마다 실행...');
+            
+        }, 1000 * 2); // 2초 마다 콜백함수 실행
+
+        
+        // 대화상자
+        alert('기본 대화상자');
+        
+        let result = confirm('확인, 취소 대화상자');
+
+        if(result){
+            document.write('확인을 누르셨습니다.' + '<br>');
+        }else{
+            document.write('취소을 누르셨습니다.' + '<br>');
+        }
+
+        let value = prompt('입력 대화상자');
+        document.write('입력 데이터 : ' + value + '<br>');
+
+
+
+    </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2.내장객체</title>
+    <!--
+        날짜 : 2024/08/06
+        이름 : 김철학
+        내용 : 자바스크립트 내장객체 실습하기
+    -->
+</head>
+<body>
+    <h3>2.내장객체</h3>
+    <h4>Array</h4>
+    <script>
+        const arr1 = [1, 2, 3, 4, 5];
+        const arr2 = new Array(6, 7, 8, 9, 10);
+
+        document.write('arr1 : ' + arr1 + '<br>');
+        document.write('arr2 : ' + arr2 + '<br>');
+
+        // 배열 원소 추출
+        document.write('arr1.at(0) : ' + arr1.at(0) + '<br>');
+        document.write('arr1.at(1) : ' + arr1.at(1) + '<br>');
+        document.write('arr1.at(2) : ' + arr1.at(2) + '<br>');
+
+        // 배열 원소 추가
+        arr1.push(7);
+        arr1.push(8);
+        arr1.push(9);
+        document.write('arr1 : ' + arr1 + '<br>');
+
+        // 배열 연결
+        const arr3 = arr1.concat(arr2);
+        document.write('arr3 : ' + arr3 + '<br>');
+
+        // 배열 원소 문자열 생성
+        const result = arr3.join('-');
+        document.write('result : ' + result + '<br>');
+
+        // 배열 반복
+        arr3.forEach(function(item, index){
+            document.write('index : ' + index + ', item : ' + item + '<br>');
+        });
+
+        arr3.forEach((item, index)=>{
+            document.write('index : ' + index + ', item : ' + item + '<br>');
+        });
+
+        // 배열 원소 가공
+        const arr4 = arr3.map((item)=>{
+            return item + 10;
+        });
+
+        const arr5 = arr3.map(item => item * 2);
+        const arr6 = arr3.filter(item => item % 2 == 0);
+        const arr7 = arr3.map(item => item * 2).filter(item => item > 10);
+
+        document.write('arr4 : ' + arr4 + '<br>');
+        document.write('arr5 : ' + arr5 + '<br>');
+        document.write('arr6 : ' + arr6 + '<br>');
+        document.write('arr7 : ' + arr7 + '<br>');
+
+        // 배열 구조 분해 할당
+        const [ spring, summer, fall, winter ] = ['봄', '여름', '가을', '겨울'];
+        document.write('spring : ' + spring + '<br>')
+        document.write('summer : ' + summer + '<br>')
+        document.write('fall : ' + fall + '<br>')
+        document.write('winter : ' + winter + '<br>')
+
+        const [city, ...others ]= ['서울', '대전', '대구', '부산', '광주'];
+        document.write('city : ' + city + '<br>');
+        document.write('others : ' + others + '<br>');
+    </script>
+
+    <h4>String</h4>
+    <script>
+        const str1 = 'Hello Korea';
+        const str2 = new String("Hello Korea");
+        const str3 = ' ab cd ef ';
+        const str4 = '서울,대전,대구,부산,광주';
+
+        let r1 = str1.length;
+        let r2 = str1.charAt(0);
+        let r3 = str1.indexOf('e');
+        let r4 = str1.lastIndexOf('e');
+        let r5 = str2.replace('Korea', 'Busan');
+        let r6 = str2.substring(0, 5);
+        let r7 = str2.substr(0, 5);
+        let r8 = str3.trim();
+        let r9 = str4.split(',');
+
+        document.write('r1 : ' + r1 + '<br>');
+        document.write('r2 : ' + r2 + '<br>');
+        document.write('r3 : ' + r3 + '<br>');
+        document.write('r4 : ' + r4 + '<br>');
+        document.write('r5 : ' + r5 + '<br>');
+        document.write('r6 : ' + r6 + '<br>');
+        document.write('r7 : ' + r7 + '<br>');
+        document.write('r8 : ' + r8 + '<br>');
+        document.write('r9 : ' + r9+ '<br>');
+        document.write('문자열 비교 : ' + (str1 == str2) + '<br>');
+    </script>
+
+    <h4>Regular Expression</h4>
+    <script>
+        const regExp = new RegExp(/\d{3}/);
+        let t1 = regExp.test('hello');
+        let t2 = regExp.test('12');
+        let t3 = regExp.test('123');
+        let t4 = regExp.test('1234');
+
+        document.write('t1 : ' + t1 + '<br>');
+        document.write('t2 : ' + t2 + '<br>');
+        document.write('t3 : ' + t3 + '<br>');
+        document.write('t4 : ' + t4 + '<br>');
+
+        const hp = '010-1234-1001';
+        const matched = hp.match(/\d{4}/);
+        //const matchedAll = hp.matchAll(/\d{4}/);
+        document.write('matched : ' + matched + '<br>');
+        //document.write('matchedAll : ' + matchedAll + '<br>');
+
+        // 정규표현식 메타문자
+        /*
+            ^ : 정규표현식 문자열 시작
+            $ : 정규표현식 문자열 끝
+            { : 정규표현식 문자열 반복 시작
+            } : 정규표현식 문자열 반복 끝
+            | : 정규표현식 OR
+            [ : 사용자 정의 정규표현식 시작
+            ] : 사용자 정의 정규표현식 끝
+            - : 정규표현식 문자열 범위
+            . : 문자 하나
+            + : 문자가 1번 이상 반복되는 문자열
+            ? : 문자가 0번 또는 1번인 문자열
+            * : 문자가 0번 이상 반복되는 문자열 
+        */
+        const reg1 = /^[0-9]+$/;      // 숫자
+        const reg2 = /^[1-9]\d*/;     // 숫자(양수)
+        const reg3 = /^\-[1-9]\d*/;   // 숫자(음수)
+        const reg4 = /^[a-zA-Z]+$/;   // 영문자
+        const reg5 = /^[a-zA-Z0-9]+$/ // 숫자와 영문자
+        const reg6 = /^[가-힣]+$/;     // 한글문자
+        const reg7 = /^.{5,10}$/;     // 문자열 길이가 5~10
+
+        document.write('reg1 test : ' + reg1.test('apple') + '<br>');
+        document.write('reg1 test : ' + reg1.test('123') + '<br>');
+        document.write('reg2 test : ' + reg2.test('10') + '<br>');
+        document.write('reg2 test : ' + reg2.test('-10') + '<br>');
+        document.write('reg3 test : ' + reg3.test('-10') + '<br>');
+        document.write('reg4 test : ' + reg4.test('apple') + '<br>');
+        document.write('reg4 test : ' + reg4.test('apple123') + '<br>');
+        document.write('reg4 test : ' + reg4.test('Apple') + '<br>');
+        document.write('reg5 test : ' + reg5.test('Apple123') + '<br>');
+        document.write('reg6 test : ' + reg6.test('홍길동') + '<br>');
+        document.write('reg6 test : ' + reg6.test('홍길동123') + '<br>');
+        document.write('reg7 test : ' + reg7.test('abcd') + '<br>');
+        document.write('reg7 test : ' + reg7.test('abcde') + '<br>');
+        document.write('reg7 test : ' + reg7.test('abcd123') + '<br>');
+
+        // 자주 사용하는 정규표현식
+        const regEmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+        const regPass  = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+        const regHp    = /^\d{3}-\d{3,4}-\d{4}$/;
+
+        document.write('regEmail : ' + regEmail.test('홍길동@한국.com') + '<br>');
+        document.write('regEmail : ' + regEmail.test('hong1234@korea.com') + '<br>');
+        document.write('regPass : ' + regPass.test('Pass1234!@#') + '<br>');
+        document.write('regHp : ' + regHp.test('010-123-1001') + '<br>');
+    </script>
+
+    <h4>Math</h4>
+    <script>
+        let rs1 = Math.abs(-5);
+        let rs2 = Math.sqrt(9);
+        let rs3 = Math.ceil(1.2);
+        let rs4 = Math.ceil(1.8);
+        let rs5 = Math.floor(1.2);
+        let rs6 = Math.floor(1.8);
+        let rs7 = Math.round(1.2);
+        let rs8 = Math.round(1.8);
+
+        document.write('rs1 : ' + rs1 + '<br>');
+        document.write('rs2 : ' + rs2 + '<br>');
+        document.write('rs3 : ' + rs3 + '<br>');
+        document.write('rs4 : ' + rs4 + '<br>');
+        document.write('rs5 : ' + rs5 + '<br>');
+        document.write('rs6 : ' + rs6 + '<br>');
+        document.write('rs7 : ' + rs7 + '<br>');
+        document.write('rs8 : ' + rs8 + '<br>');
+
+        let n1 = Math.random(); // 0 ~ 1 사이 실수
+        let n2 = n1 * 10;       // 0 ~ 10 사이 실수
+        let n3 = Math.ceil(n2); // 1 ~ 10 사이 정수
+        
+        document.write('n1 : ' + n1 + '<br>');
+        document.write('n2 : ' + n2 + '<br>');
+        document.write('n3 : ' + n3 + '<br>');
+
+        let n4 = Math.ceil(Math.random() * 10);
+        document.write('n4 : ' + n4 + '<br>');
+    </script>   
+
+    <h4>Date</h4>
+    <script>
+        const date = new Date();
+        document.write('date : ' + date + '<br>');
+
+        let yy = date.getFullYear();
+        let mm = date.getMonth() + 1;
+        let dd = date.getDate();
+        let hour = date.getHours();
+        let min = date.getMinutes();
+        let sec = date.getSeconds();
+
+        // 템플릿 문자열(backtick 문자열)
+        document.write(`${yy}년 ${mm}월 ${dd}일 ${hour}:${min}:${sec}`);
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3.문서객체모델</title>
+    <!--
+        날짜 : 2024/08/05
+        이름 : 김철학
+        내용 : 자바스크립트 문서객체모델 실습하기
+    -->
+</head>
+<body>
+    <h3>3.문서객체모델</h3>
+
+    <h4>문서객체 선택</h4>
+    <ul>
+        <li id="seoul">
+            <span>서울</span>
+            <ol>
+                <li><i>명동</i></li>
+                <li><i>종로</i></li>
+                <li><i>홍대</i></li>
+                <li><i>신촌</i></li>
+            </ol>
+        </li>
+        <li>대전</li>
+        <li id="daegu">대구</li>
+        <li>
+            <span>부산</span>
+            <ol>
+                <li class="busan">서면</li>
+                <li class="busan">남포동</li>
+                <li class="busan">해운대</li>
+            </ol>
+        </li>
+        <li class="gwangju">광주</li>
+    </ul>
+    <script>
+        // 문서객체 선택
+        const h3 = document.querySelector('h3');
+        h3.style.color = 'blue';
+
+        const seoul = document.querySelector('#seoul > span');
+        seoul.style.color = 'red';
+
+        const daejeon = document.querySelector('ul > li:nth-child(2)');
+        daejeon.style.color = 'green';
+
+        const busan = document.querySelectorAll('.busan');
+        busan[0].style.color = 'blue';
+        busan[1].style.color = 'blue';
+        busan[2].style.color = 'blue';
+
+        const daegu = document.getElementById('daegu');
+        daegu.style.color = 'orange';
+
+        const names = document.getElementsByTagName('i');
+        for(let name of names){
+            name.style.color = 'pink';
+        }
+
+        const gwangju = document.getElementsByClassName('gwangju');
+        gwangju[0].style.color = 'yellow';
+
+    </script>
+
+
+
+    <h4>문서객체 조작</h4>
+    
+    <h4>문서객체 추가/이동</h4>
+    
+    <h4>문서객체 생성/삭제</h4>
+
+</body>
+</html>
