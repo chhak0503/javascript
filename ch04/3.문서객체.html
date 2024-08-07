@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>3.문서객체모델</title>
+    <style>
+        .box {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+
+        .red {background-color: red;}
+        .green {background-color: green;}
+        .blue {background-color: blue;}
+    </style>
     <!--
         날짜 : 2024/08/05
         이름 : 김철학
         내용 : 자바스크립트 문서객체모델 실습하기
-    -->
+    -->    
 </head>
 <body>
     <h3>3.문서객체모델</h3>
@@ -64,13 +76,157 @@
 
     </script>
 
-
-
     <h4>문서객체 조작</h4>
+
+    <img src="https://dummyimage.com/200x100" alt="">
+    <img src="https://dummyimage.com/200x100" alt="">
+    <hr>
+
+    <div class="box1">box1</div>
+    <div class="box2">box2</div>
+
+    <ul id="korea">
+        <li>서울</li>
+        <li>대전</li>
+        <li>대구</li>
+        <li>부산</li>
+        <li>광주</li>
+    </ul>
+
+    <p class="content"></p>
+    <p class="content"></p>
+
+    <div class="box">box1</div>
+    <div class="box green">box2</div>
+    <div class="box">box3</div>
+
+    <script>
+        // 문서객체 조작
+
+        // 속성 수정
+        const images = document.querySelectorAll('img');
+        images[0].src = 'https://picsum.photos/id/237/300/200';
+        images[0].alt = '웹이미지-강아지';
+
+        images[1].src = 'https://picsum.photos/id/238/300/200';
+        images[1].alt = '웹이미지';
+
+        // 스타일 수정
+        const box1 = document.querySelector('.box1');
+        box1.style.display = 'inline-block';
+        box1.style.width = '100px';
+        box1.style.height = '100px';
+        box1.style.border = '1px solid black';
+        box1.style.background = 'orange';
+
+        const box2 = document.querySelector('.box2');
+        box2.style.display = 'inline-block';
+        box2.style.width = '100px';
+        box2.style.height = '100px';
+        box2.style.border = '1px solid black';
+        box2.style.background = 'green';
+
+        // 내용 수정
+        const korea = document.querySelector('#korea');
+
+        let text = korea.innerText; // 태그 내용의 텍스트 요소만 추출
+        let html = korea.innerHTML; // 태그 내용의 태그 요소와 텍스트 요소 추출
+
+        console.log('text : ' + text);
+        console.log('html : ' + html);
+
+        const contents = document.querySelectorAll('.content');
+        contents[0].innerText = '<i>TEXT 내용입니다.</i>'; // 문자열 태그를 텍스트 요소로 추가
+        contents[1].innerHTML = '<i>HTML 내용입니다.</i>'; // 문자열 태그는 태그 요소로 추가
+
+        // 클래스 속성 수정
+        const boxs = document.getElementsByClassName('box');
+        boxs[0].classList.add('red');
+        boxs[1].classList.remove('green');
+        boxs[2].classList.toggle('blue');
+    </script>
     
     <h4>문서객체 추가/이동</h4>
+    <ul class="city">
+        <li>
+            <em>경기도</em>
+            <ol></ol>
+        </li>
+        <li>
+            <em>충청도</em>
+            <ol></ol>
+        </li>
+        <li>
+            <em>강원도</em>
+            <ol></ol>
+        </li>
+        <li>
+            <em>경상도</em>
+            <ol>
+                <li>창원</li>
+                <li>수원</li>
+                <li>목포</li>
+                <li>부여</li>
+                <li>원주</li>
+                <li>파주</li>
+            </ol>
+        </li>
+        <li>
+            <em>전라도</em>
+            <ol></ol>
+        </li>
+    </ul>
+
+    <script>
+        // 문서객체 추가/이동
+        const gyenggi     = document.querySelector('.city > li:nth-child(1) > ol');
+        const chungcheong = document.querySelector('.city > li:nth-child(2) > ol');
+        const gangwon     = document.querySelector('.city > li:nth-child(3) > ol');
+        const gyeongsang  = document.querySelector('.city > li:nth-child(4) > ol');
+        const jeonlla     = document.querySelector('.city > li:nth-child(5) > ol');
+
+        gyenggi.insertAdjacentHTML('beforeend', '<li>평택</li>');
+        gyenggi.insertAdjacentHTML('beforeend', '<li>용인</li>');
+        gyenggi.insertAdjacentHTML('afterbegin', '<li>성남</li>');
+        gyenggi.insertAdjacentHTML('afterbegin', '<li>화성</li>');
+
+        chungcheong.insertAdjacentHTML('beforeend', '<li>단양</li>');
+        gangwon.insertAdjacentHTML('beforeend', '<li>춘천</li>');
+        jeonlla.insertAdjacentHTML('beforeend', '<li>담양</li>');
+
+        const cities = gyeongsang.getElementsByTagName('li');
+        const suwon = cities[1];
+        const mokpo = cities[2];
+        const buyeo = cities[3];
+        const wonju = cities[4];
+        const pajoo = cities[5];
+
+        gyenggi.append(suwon);
+        gyenggi.prepend(pajoo);
+        jeonlla.append(mokpo);
+        chungcheong.prepend(buyeo);
+        gangwon.append(wonju);
+    </script>
     
     <h4>문서객체 생성/삭제</h4>
+
+    <section>
+        <h5>삭제예정</h5>
+    </section>
+
+    <script>
+        // 문서객체 생성/삭제
+        const section = document.getElementsByTagName('section')[0];
+        const p = document.createElement('p');
+        p.id = 'tit';
+        p.innerText = '동적으로 생성한 문단태그 p';
+
+        section.appendChild(p);
+
+        document.getElementsByTagName('h5')[0].remove();
+
+    </script>
+
 
 </body>
 </html>
