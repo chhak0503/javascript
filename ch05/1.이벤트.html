@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1.이벤트</title>
+    <!--
+        날짜 : 2024/08/07
+        이름 : 김철학
+        내용 : 자바스크립트 이벤트 실습하기    
+    -->
+</head>
+<body>
+    <h3>1.이벤트</h3>
+
+    <h4 onclick="btn1Handler()">인라인 이벤트 모델</h4>
+    <button onclick="btn1Handler()">버튼1</button>
+    <button ondblclick="btn2Handler()">버튼2</button>
+    <button onmousedown="btn3Handler()">버튼3</button>
+    
+
+    <script>
+        // 인라인 이벤트 모델 - 태그의 이벤트 속성으로 이벤트 처리
+        function btn1Handler(){
+            alert('버튼1!');
+        }
+
+        const btn2Handler = function(){
+            alert('버튼2!');
+        };
+
+        const btn3Handler = () => {
+            alert('버튼3!');
+        }
+
+
+    </script>
+
+
+    <h4>기본 이벤트 모델</h4>
+    <button id="btn1">버튼1</button>
+    <button id="btn2">버튼2</button>
+    <button id="btn3">버튼3</button>
+
+    <script>
+        // 기본 이벤트 모델 - 문서객체의 이벤트 속성으로 이벤트 처리
+        const btn1 = document.getElementById('btn1');
+        btn1.onclick = function(){
+            alert('버튼1!!');
+        }
+
+        const btn2 = document.getElementById('btn2');
+        btn2.ondblclick = () => {
+            alert('버튼2!!');
+        }
+        
+        document.getElementById('btn3').onmousedown = () => {
+            alert('버튼3!!');
+        }
+    </script>
+
+    <h4>표준 이벤트 모델</h4>
+    <button class="button1">버튼1</button>
+    <button class="button2">버튼2</button>
+    <button class="button3">버튼3</button>
+
+    <script>
+        // 표준 이벤트 모델 - 문서객체 리스너로 이벤트 처리
+        const button1 = document.getElementsByClassName('button1');
+        button1[0].addEventListener('click', function(){
+            alert('버튼1!!!');
+        });
+
+        const button2 = document.getElementsByClassName('button2')[0];
+        button2.addEventListener('dblclick', ()=>{
+            alert('버튼2!!!');
+        });
+
+        document.getElementsByClassName('button3')[0].addEventListener('mousedown', ()=>{
+            alert('버튼3!!!');
+        });
+
+
+    </script>
+
+
+</body>
+</html>
