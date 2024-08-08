@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4.이벤트 전파</title>
+    <!--
+        날짜 : 2024/08/08
+        이름 : 김철학
+        내용 : 자바스크립트 이벤트 전파 실습하기    
+    -->
+    <style>
+        div {
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .box1 {
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+        }
+        .box2 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid green;
+        }
+        .box3 {
+            width: 100px;
+            height: 100px;
+            border: 1px solid blue;
+        }
+    </style>
+    <script>
+        // 문서 로드가 완료된 후 실행
+        document.addEventListener('DOMContentLoaded', function(){
+
+            const box1 = document.getElementsByClassName('box1');
+            const box2 = document.getElementsByClassName('box2');
+            const box3 = document.getElementsByClassName('box3');
+
+            // 이벤트 버블링 - 상위로 이벤트 전파
+            box1[0].addEventListener('click', function(e){
+                e.stopPropagation();
+                alert('box1 클릭!');
+            });
+
+            box2[0].addEventListener('click', function(e){
+                e.stopPropagation();
+                alert('box2 클릭!');
+            });
+
+            box3[0].addEventListener('click', function(e){
+                e.stopPropagation(); // 이벤트 전파 차단
+                alert('box3 클릭!');
+            });
+
+            // 이벤트 캡처링 - 하위로 이벤트 전파
+            box1[1].addEventListener('click', function(e){                
+                alert('box1 클릭!');
+            }, true);
+
+            box2[1].addEventListener('click', function(e){                
+                alert('box2 클릭!');
+            }, true);
+
+            box3[1].addEventListener('click', function(e){
+                alert('box3 클릭!');
+            }, true);
+
+        });
+
+
+    </script>
+</head>
+<body>
+    <h3>4.이벤트 전파</h3>
+
+    <h4>버블링</h4>
+    <div class="box1">box1
+        <div class="box2">box2
+            <div class="box3">box3</div>
+        </div>
+    </div>
+
+    <h4>캡처링</h4>
+    <div class="box1">box1
+        <div class="box2">box2
+            <div class="box3">box3</div>
+        </div>
+    </div>
+
+</body>
+</html>

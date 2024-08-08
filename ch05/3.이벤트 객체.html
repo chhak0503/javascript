@@ -29,8 +29,37 @@
                 span[3].innerText = e.pageY;
                 span[4].innerText = e.screenX;
                 span[5].innerText = e.screenY;
-                span[6].innerText = e.target;
-                span[7].innerText = e.timeStamp;
+                span[6].innerText = e.target;           // 이벤트가 발생한 DOM 요소 
+                span[7].innerText = e.target.tagName;   // 이벤트가 발생한 DOM 요소 태그명
+                span[8].innerText = e.target.id;        // 이벤트가 발생한 DOM 요소 태그 아이디
+                span[9].innerText = e.timeStamp;        // 이벤트가 발생 시간
+            });
+
+
+            // 기본 이벤트 취소
+            const a = document.getElementsByTagName('a');
+            const form = document.getElementsByTagName('form')[0];
+
+            a[0].addEventListener('click', (e)=>{
+                e.preventDefault(); // 기본 이벤트 취소
+                alert('네이버!');
+            });
+
+            a[1].onclick = function(e){
+                e.preventDefault();
+                alert('다음!');
+            }
+
+            form.addEventListener('submit', (e)=>{
+                e.preventDefault(); // 폼 전송 취소
+
+                const result = document.getElementById('result');
+                const span = result.getElementsByTagName('span');
+
+                span[0].innerText = e.target.userid.value;
+                span[1].innerText = e.target.pass.value;
+
+                alert('전송 취소!');
             });
 
         }
@@ -51,8 +80,27 @@
         screenX : <span>0</span><br>
         screenY : <span>0</span><br>
         target : <span>0</span><br>
+        target tagName : <span>0</span><br>
+        target id : <span>0</span><br>
         timestamp : <span>0</span><br>
     </p>
+
+    <h4>기본 이벤트 취소</h4>
+
+    <a href="https://naver.com">네이버</a>
+    <a href="https://daum.net">다음</a>
+
+    <form action="https://google.com">
+        <input type="text" name="userid"><br>
+        <input type="text" name="pass"><br>
+        <input type="submit" value="전송">
+    </form>
+
+    <div id="result">
+        <span></span>
+        <span></span>
+    </div>
+
     
 </body>
 </html>
