@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3.이벤트 객체</title>
+    <!--
+        날짜 : 2024/08/08
+        이름 : 김철학
+        내용 : 자바스크립트 이벤트 객체 실습하기    
+    -->
+    <style>
+        #container {
+            width: 600px;
+            height: 300px;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            const container = document.getElementById('container');
+            const span = document.getElementsByTagName('span');
+
+            container.addEventListener('mousemove', function(e){
+                console.log('mousemove!');
+
+                span[0].innerText = e.clientX;
+                span[1].innerText = e.clientY;
+                span[2].innerText = e.pageX;
+                span[3].innerText = e.pageY;
+                span[4].innerText = e.screenX;
+                span[5].innerText = e.screenY;
+                span[6].innerText = e.target;
+                span[7].innerText = e.timeStamp;
+            });
+
+        }
+    </script>
+</head>
+<body>
+    <h3>3.이벤트 객체</h3>
+
+    
+    <div id="container"></div>
+
+    <h4>이벤트 객체 주요속성</h4>
+    <p>
+        clientX : <span>0</span><br>
+        clientY : <span>0</span><br>
+        pageX : <span>0</span><br>
+        pageY : <span>0</span><br>
+        screenX : <span>0</span><br>
+        screenY : <span>0</span><br>
+        target : <span>0</span><br>
+        timestamp : <span>0</span><br>
+    </p>
+    
+</body>
+</html>

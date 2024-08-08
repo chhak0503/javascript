@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<script>console.log('here 1...');</script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2.이벤트 종류</title>
+    <!--
+        날짜 : 2024/08/08
+        이름 : 김철학
+        내용 : 자바스크립트 이벤트 종류 실습하기    
+    -->
+    <style>
+        html {
+            width: 100%;
+            height: 2000px;
+        }
+
+        #content1 > p:nth-child(2) {
+            position: fixed;
+            right: 40px;
+            top: 40px;
+        }
+
+        .box {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+
+    </style>
+    <script>
+        
+        // 아직 로드되지 않은 문서에 대한 객체 생성 안됨
+        const content1 = document.getElementById('content1');        
+        console.log('here 1-1... : ' + content1);
+
+
+
+        // 문서 로드 이벤트 - 브라우저가 HTML 문서 로드를 완료하고 난 후 실행
+        window.onload = function(){
+            console.log('here 2...');
+
+            const content1 = document.getElementById('content1');        
+            console.log('here 2-1... : ' + content1);
+
+            // 스크롤 상단 이동            
+            const btnTop = document.getElementById('btn-top');
+            btnTop.onclick = () => {
+                window.scrollTo(0, 0);
+            }
+
+            // 마우스 이벤트 실습
+            const box = document.getElementsByClassName('box');
+            box[0].addEventListener('click', function(){
+                this.style.background = 'red';
+            });
+            box[1].addEventListener('mousedown', function(){
+                this.style.background = 'blue';
+            });
+            box[2].addEventListener('mouseup', function(){
+                this.style.background = 'green';
+            });
+            box[3].addEventListener('mouseover', function(){
+                this.style.background = 'orange';
+            });
+            box[4].addEventListener('mouseenter', function(){
+                this.style.background = 'yellow';
+            });
+            box[5].addEventListener('mouseout', function(){
+                this.style.background = 'pink';
+            });
+            box[6].addEventListener('mousemove', function(){
+                console.log('mousemove!');
+            });
+
+            // 키보드 이벤트
+            const inputUser = document.getElementsByName('user')[0];
+            const inputName = document.getElementsByName('name')[0];
+            const result = document.querySelectorAll('.result');
+
+            inputUser.addEventListener('keydown', function(){
+                result[0].innerText = this.value;
+            });
+
+            inputName.addEventListener('keyup', function(){
+                result[1].innerText = this.value;
+            });
+
+            // 폼 이벤트
+            const userForm  = document.userForm; // form 태그의 name 속성으로 문서객체 생성
+            const inputUid  = document.userForm.uid;
+            const inputPass = userForm.pass;
+            const selectAddr = userForm.addr;
+            const print = document.getElementsByClassName('print');
+
+            inputUid.addEventListener('focus', function(){
+                print[0].innerText = 'focus!';
+            });
+
+            inputPass.addEventListener('focusout', function(){
+                print[1].innerText = 'focusout!';
+            });
+
+            selectAddr.addEventListener('change', function(){
+                print[2].innerText = this.value;
+            });
+
+            userForm.onsubmit = function(){
+
+                const result = confirm('전송하시겠습니까?');
+
+                if(result){
+                    alert('전송시작');
+                    return true;
+                }else{
+                    alert('전송취소');
+                    return false;
+                }
+            }
+
+        }// onload 끝
+
+        // 문서 스크롤 이벤트 
+        window.onscroll = function(){
+            console.log('scroll!');
+
+            let y = this.scrollY;
+            const content1 = document.getElementById('content1');
+            const span = content1.getElementsByTagName('span')[2];
+            span.innerText = y;
+        }
+
+
+
+    </script>
+</head>
+<body>
+    <h3>2.이벤트 종류</h3>
+
+    <h4>문서 이벤트</h4>
+    <div id="content1">
+        <p>
+            가로 : <span>0</span><br>
+            세로 : <span>0</span><br>
+        </p>
+        <p>
+            위치 : <span>0</span><br>
+            <button id="btn-top">상단이동</button>
+        </p>
+    </div>
+
+    <h4>마우스 이벤트</h4>
+    <div id="content2">
+        <div class="box box1">click</div>
+        <div class="box box2">mousedown</div>
+        <div class="box box3">mouseup</div>
+        <div class="box box4">mouseover</div>
+        <div class="box box5">mouseenter</div>
+        <div class="box box6">mouseout</div>
+        <div class="box box7">mousemove</div>
+    </div>
+
+    <h4>키보드 이벤트</h4>
+    <div id="content3">
+        <p>
+            <input type="text" name="user">
+            <span class="result"></span>
+        </p>
+        <p>
+            <input type="text" name="name">
+            <span class="result"></span>
+        </p>
+    </div>
+
+    <h4>폼 이벤트</h4>
+    <div id="content4">
+        <form action="https://naver.com" name="userForm">
+            <p>
+                <input type="text" name="uid"/>
+                <span class="print"></span>
+            </p>
+            <p>
+                <input type="text" name="pass"/>
+                <span class="print"></span>
+            </p>
+            <p>
+                <select name="addr">
+                    <option>서울</option>
+                    <option>대전</option>
+                    <option>대구</option>
+                    <option>부산</option>
+                    <option>광주</option>
+                </select>
+                <span class="print"></span>
+            </p>
+            <input type="submit" value="전송">
+        </form>
+
+
+    </div>
+
+
+
+</body>
+</html>
+<script>
+    console.log('here 3...');
+</script>
