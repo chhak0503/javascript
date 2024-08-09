@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Slider with Mouse Movement</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;            
+        }
+        #slider {
+            width: 500px; /* 슬라이더 너비 */
+            height: 300px; /* 슬라이더 높이 */
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #ddd;
+            background-color: #fff; /* 슬라이더 배경 색상 */
+        }
+        #slider img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover; /* 이미지가 슬라이더 크기에 맞게 잘림 */
+        }
+    </style>
+
+    <script>
+        window.onload = function() {
+
+            const totalImages = 120;
+            const slider = document.getElementById('slider');
+            const img = slider.querySelector('img');
+
+            slider.addEventListener('mousemove', function(e){
+
+                const sliderRect = slider.getBoundingClientRect();
+                const mouseX = event.clientX - sliderRect.left;
+                
+                // 슬라이더의 너비를 기준으로 이미지 인덱스 계산
+                const sliderWidth = slider.offsetWidth;
+                const imgIndex = Math.min(Math.floor((mouseX / sliderWidth) * totalImages), totalImages - 1);
+                
+                console.log('imgIndex : ' + imgIndex);
+
+                // 이미지 태그의 src 속성 수정
+                img.src = `./images/car/car${imgIndex}.jpg`;
+            });
+        }
+    </script>
+
+</head>
+<body>
+    <div id="slider">
+        <img src="images/car/car0.jpg" alt="Slider Image">
+    </div>
+
+    
+</body>
+</html>
