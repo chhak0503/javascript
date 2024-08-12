@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3.JSON</title>
+    <!--
+        날짜 : 2024/08/12
+        이름 : 김철학
+        내용 : 자바스크립트 JSON 실습하기    
+    -->
+</head>
+<body>
+    <h3>3.JSON</h3>
+    <script>
+        // JSON 객체
+        const user = {
+            "uid": "a101",
+            "name": "김유신",
+            "age": 23,
+            "addr": "김해"
+        };
+
+        document.write('user : ' + user + '<br>');
+        document.write('user.uid : ' + user.uid + '<br>');
+        document.write('user.name : ' + user.name + '<br>');
+        document.write('user.age : ' + user.age + '<br>');
+        document.write('user.addr : ' + user.addr + '<br>');
+
+        // JSON 배열
+        const jsonData = {
+            "users": [
+                {"uid": "a101", "name": "김유신", "age": 25, "addr": "김해"},
+                {"uid": "a102", "name": "김춘추", "age": 23, "addr": "경주"},
+                {"uid": "a103", "name": "장보고", "age": 35, "addr": "완도"},
+                {"uid": "a104", "name": "강감찬", "age": 45, "addr": "서울"},
+                {"uid": "a105", "name": "이순신", "age": 55, "addr": "부산"}
+            ]
+        };
+
+        for(const user of jsonData.users){
+            document.write('<p>');
+            document.write('uid : ' + user.uid + '<br>');
+            document.write('name : ' + user.name + '<br>');
+            document.write('age : ' + user.age + '<br>');
+            document.write('addr : ' + user.addr + '<br>');
+            document.write('</p>');
+        }
+
+        // JSON 함수
+        const member = {
+            "id": "a101",
+            "name": "홍길동",
+            "age": 22,
+            "hp": "010-1234-1001"
+        };
+        document.write('member : ' + member +'<br>');
+
+        // stringify() - JSON을 문자열로 변환, 클라이언트에서 서버로 JSON 문자열 전송
+        const strMember = JSON.stringify(member);
+        document.write('strMember : ' + strMember +'<br>');
+
+        // parse() - JSON 문자열을 JSON 객체 변환, 서버에서 클라이언트로 전송된 JSON 문자열을 파싱
+        const parsedMember = JSON.parse(strMember);
+        document.write('parsedMember : ' + parsedMember + '<br>');
+        document.write('parsedMember.uid : ' + parsedMember.uid + '<br>');
+        document.write('parsedMember.name : ' + parsedMember.name + '<br>');
+        document.write('parsedMember.age : ' + parsedMember.age + '<br>');
+        document.write('parsedMember.hp : ' + parsedMember.hp + '<br>');
+    </script>
+</body>
+</html>
+
+
+

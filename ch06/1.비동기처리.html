@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1.비동기처리</title>
+    <!--
+        날짜 : 2024/08/12
+        이름 : 김철학
+        내용 : 자바스크립트 비동기 처리 실습하기    
+    -->
+</head>
+<body>
+    <h3>1.비동기처리</h3>
+    <script>
+        // 콜백함수를 이용한 비동기 처리
+        function start( callback ){
+
+            setTimeout(()=>{
+                console.log('start...');
+                callback(); // 콜백함수(end) 호출
+            }, 2000);
+            
+        }
+
+        function end(){
+            console.log('end...');
+        }
+
+        start(end);
+        
+        // 콜백 지옥
+        function step1(callback){
+
+            setTimeout(() => {
+                console.log('step1...');
+                callback();
+            }, 1000);
+        }
+
+        function step2(callback){
+
+            setTimeout(() => {
+                console.log('step2...');
+                callback();
+            }, 3000);
+        }
+
+        function step3(callback){
+
+            setTimeout(() => {
+                console.log('step3...');
+                callback();
+            }, 2000);
+        }
+
+        step1(function(){
+            step2(function(){
+                step3(function(){});
+            });
+        });
+    </script>
+</body>
+</html>
