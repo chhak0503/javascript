@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4.Ajax</title>
+    <!--
+        날짜 : 2024/08/13
+        이름 : 김철학
+        내용 : 자바스크립트 Ajax 실습하기    
+    -->
+    <script>
+        window.onload = function(){
+
+            const btnUser1 = document.getElementById('btnUser1');
+            const user1 = document.getElementById('user1');
+            const span = user1.getElementsByTagName('span');
+
+            btnUser1.onclick = () => {
+
+                // Ajax 객체 생성
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', 'http://127.0.0.1:5500/ch06/data/user1.json');
+                xhr.send();
+
+                // 응답 처리 이벤트
+                xhr.onreadystatechange = function(){
+
+                    // 응답완료
+                    if(xhr.readyState == XMLHttpRequest.DONE){
+
+                        // 요청 성공
+                        if(xhr.status == 200){
+
+                            //console.log(xhr.responseText);
+                            const result = JSON.parse(xhr.responseText); // JSON 문자열을 JSON 객체로 변환
+
+                            span[0].innerText = result.uid;
+                            span[1].innerText = result.name;
+                            span[2].innerText = result.age;
+                            span[3].innerText = result.addr;
+                        }
+                    }
+                }
+            } // btnUser1 end
+
+            const btnUser2 = document.getElementById('btnUser2');
+            const user2 = document.getElementById('user2');
+            const span2 = user2.getElementsByTagName('span');
+
+            btnUser2.onclick = function(){
+
+                fetch('./data/user2.json')  // 요청 서버 주소
+                    .then((response)=>{     // 응답 데이터 JSON 반환
+                        return response.json();
+                    })
+                    .then((data)=>{         // JSON 데이터 출력
+                        console.log(data);
+                        span2[0].innerText = data.uid;
+                        span2[1].innerText = data.name;
+                        span2[2].innerText = data.age;
+                        span2[3].innerText = data.addr;
+                    })
+                    .catch((err)=>{         // 요청 실패
+                        console.log(err);
+                    });
+            }
+
+            const btnUsers = document.getElementById('btnUsers');
+            const table = document.getElementsByTagName('table')[0];
+
+            btnUsers.addEventListener('click', function(){
+
+                fetch('./data/users.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+
+                        for(const user of data.users){
+                            /*
+                            const tr = document.createElement('tr');
+                            const td1 = document.createElement('td');
+                            const td2 = document.createElement('td');
+                            const td3 = document.createElement('td');
+                            const td4 = document.createElement('td');
+
+                            td1.innerText = user.uid;
+                            td2.innerText = user.name;
+                            td3.innerText = user.age;
+                            td4.innerText = user.addr;
+
+                            tr.appendChild(td1);
+                            tr.appendChild(td2);
+                            tr.appendChild(td3);
+                            tr.appendChild(td4);
+
+                            table.appendChild(tr);
+                            */
+                            const row = `<tr>
+                                            <td>${user.uid}</td>
+                                            <td>${user.name}</td>
+                                            <td>${user.age}</td>
+                                            <td>${user.addr}</td>                                
+                                        </tr>`;
+                                        
+                            table.insertAdjacentHTML('beforeend', row);
+                        }
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    });
+
+
+
+
+
+            });
+
+
+
+        } // onload end
+
+
+    </script>
+
+
+</head>
+<body>
+    <h3>4.Ajax</h3>
+
+    <button id="btnUser1">user1</button>
+    <p id="user1">
+        아이디 : <span></span><br>
+        이름 : <span></span><br>
+        나이 : <span></span><br>
+        주소 : <span></span><br>
+    </p>
+
+    <button id="btnUser2">user2</button>
+    <p id="user2">
+        아이디 : <span></span><br>
+        이름 : <span></span><br>
+        나이 : <span></span><br>
+        주소 : <span></span><br>
+    </p>
+
+    <button id="btnUsers">users</button>
+
+    <table border="1">
+
+        <tr>
+            <th>아이디</th>
+            <th>이름</th>
+            <th>나이</th>
+            <th>주소</th>
+        </tr>
+
+    </table>
+
+</body>
+</html>
