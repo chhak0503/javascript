@@ -31,9 +31,18 @@
                 .then(resp => resp.json())
                 .then(data => {
                     console.log(data);
+
+                    // access, refresh 토큰 저장
+                    localStorage.setItem('accessToken', data.accessToken);
+                    localStorage.setItem('refreshToken', data.refreshToken);
+
+                    // 이동
+                    location.href = "./login_success.html";
+
                 })
                 .catch(err => {
-                    console.log(err);
+                    console.log(err);                    
+                    alert('일치하는 회원이 없습니다.');
                 });
             }
         }

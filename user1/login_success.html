@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>success</title>
+    <script>
+
+        window.onload = function(){
+
+            // 서버로 토큰 전송
+            const accessToken = localStorage.getItem('accessToken');
+
+            fetch('http://127.0.0.1:8080/ch10/user', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            })
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+
+            const logout = document.getElementById('logout');
+            logout.onclick =  function(){
+
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('refreshToken');
+
+                location.href = './login.html';
+
+            }
+
+
+        }
+
+
+
+    </script>
+
+
+</head>
+<body>
+    <p>
+        아이디 : <span>a101</span><br>
+        이름 : <span>홍길동</span><br>
+        생년월일 : <span>1990-09-09</span><br>
+        휴대폰 : <span>010-1234-1001</span><br>        
+        <a href="#" id="logout">로그아웃</a>
+    </p>    
+</body>
+</html>
