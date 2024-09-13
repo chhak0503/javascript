@@ -18,15 +18,20 @@
             form.onsubmit = function(e){
                 e.preventDefault();
 
+                /*
+                서버측에서 DTO의 pass를 @JsonIgnore로 선언했기 때문에 수신처리 안됨
                 const jsonData = {
                     "uid": form.uid.value,
                     "pass": form.pass.value
                 }
+                */
+                const formData = new FormData();                
+                formData.append("uid", form.uid.value);
+                formData.append("pass", form.pass.value);
 
                 fetch('http://127.0.0.1:8080/ch10/user/login', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(jsonData)
+                    method: 'POST',                    
+                    body: formData
                 })
                 .then(resp => resp.json())
                 .then(data => {
@@ -37,7 +42,7 @@
                     localStorage.setItem('refreshToken', data.refreshToken);
 
                     // 이동
-                    location.href = "./login_success.html";
+                    //location.href = "./login_success.html";
 
                 })
                 .catch(err => {
